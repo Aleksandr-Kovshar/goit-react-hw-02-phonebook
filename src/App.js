@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import "./App.css";
-import Feedback from "./components/Feedback";
-// import Phonebook from "./components/Phonebook";
+import Phonebook from "./components/Phonebook";
 
 class App extends Component {
-  state = {};
+  state = {
+    
+  };
 
   render() {
     return (
       <div className="App">
-        <Feedback />
-        {/* <Phonebook /> */}
+        <Phonebook />
       </div>
     );
   }

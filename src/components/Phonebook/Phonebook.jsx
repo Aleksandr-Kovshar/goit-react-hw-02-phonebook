@@ -2,19 +2,32 @@ import React, { Component } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import styled from "styled-components";
 import { object, string, number, date, InferType, boolean } from "yup";
+import FormAdd from "./FormAdd";
+import Contact from "./Contact";
+import ContactList from "./ContactList";
 
-// const products = ["Sweater", "Keybord", "Sofa", "Freezer"];
+class Phonebook extends Component {
+  state = {
+    contacts: [
+      { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
+      { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
+      { id: "id-3", name: "Eden Clements", number: "645-17-79" },
+      { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
+    ],
+    filter: "",
+    name: "",
+    number: "",
+  };
 
-// const validationSchema = object({
-//   product: string().required("Please, select a product").oneOf(products),
-//   name: string().required(),
-//   email: string().email().required(),
-//   title: string().required(),
-//   review: string().required(),
-//   rating: number().min(1).max(10).required(),
-//   date: date().default(() => new Date()),
-//   wouldRecommend: boolean().default(false),
-// });
+  render() {
+    return (
+      <>
+        <FormAdd></FormAdd>
+        <ContactList contacts={this.state.contacts} />
+      </>
+    );
+  }
+}
 
 // const ErrorText = styled.p`
 //   color: red;
@@ -122,4 +135,4 @@ import { object, string, number, date, InferType, boolean } from "yup";
 //   }
 // }
 
-// export default Phonebook;
+export default Phonebook;
