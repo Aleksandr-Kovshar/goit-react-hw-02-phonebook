@@ -32,17 +32,40 @@ class Phonebook extends Component {
     }));
   };
 
+  deleteContact = (id) => {
+    this.setState((prevState) => ({
+      contacts: prevState.contacts.filter((onecontact) => onecontact.id !== id),
+    }));
+  };
+
+  changeFilter = (e) => {
+    this.setState({ filter: e.currentTarget.value });
+  };
+
+  getVisibleContacts = () => {
+    const { filter, contacts} = this.state;
+    const narmalizeFilter = filter.toLowerCase();
+    return contacts.filter((onecontact) =>
+      onecontact.name.toLowerCase().includes(narmalizeFilter)
+    );
+  };
+  
+  
+
+
   render() {
+    const visibleContacts = this.getVisibleContacts();
     return (
       <>
         <FormAdd onAddContact={this.addContact} />
-        <Filter />
-        <ContactList contacts={this.state.contacts} />
+        <Filter value={this.state.filter} onChange={this.changeFilter} />
+        <ContactList
+          contacts={visibleContacts}
+          onDeleteContact={this.deleteContact}
+        />
       </>
     );
   }
 }
-
-
 
 export default Phonebook;
